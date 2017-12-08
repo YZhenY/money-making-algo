@@ -1,5 +1,6 @@
 ## method for scraping bitcoinity
 import requests
+import json
 class BitcoinityScraper():
 	"""	Class for scraping Bitcoinity. Use its methods to draw data || Rihgt now just for public methods"""
 	url = "https://data.bitcoinity.org/chart_data"
@@ -30,5 +31,9 @@ class BitcoinityScraper():
 	def get_chart_data(self):
 		#returns chart data fetched through a post request
 		response = requests.post(self.url, data=self.get_params())
-		return response.content
-		
+		chartData = response.content
+		# decodes receiving format to dictionary
+		str_format = chartData.decode()
+		json_acceptable_string = str_format.replace("'","\"")
+		dict_format = json.loads(json_acceptable_string)
+		return dict_format
