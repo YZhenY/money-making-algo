@@ -1,7 +1,8 @@
 ## method for scraping bitcoinity
 import requests
 import json
-class BitcoinityScraper():
+from classstructure import *
+class BitcoinityScraper(Scraper):
 	"""	Class for scraping Bitcoinity. Use its methods to draw data || Rihgt now just for public methods"""
 	url = "https://data.bitcoinity.org/chart_data"
 	

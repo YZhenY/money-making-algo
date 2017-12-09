@@ -1,7 +1,8 @@
 #tradeblock chart scraper
 import requests
 import datetime
-class TradeblockScraper():
+from classstructure import *
+class TradeblockScraper(Scraper):
 	"""Tradeblock Scraper scrapes information from tradeblock through their get responses. This currently only works for their chart data"""
 	# Example get request
 	#"https://tradeblock.com/api/markets/ohlcv/bfnx/eth-usd/?start=1509528977000&end=1512768977000&period=1h"
@@ -29,3 +30,6 @@ class TradeblockScraper():
 		get_request = 'https://tradeblock.com/api/markets/{}/{}/{}/?start={}&end={}&period={}'.format(self.page_to_draw, self.exchange, self.curr_pair, self.start_time.timestamp()*1000, self.end_time.timestamp()*1000,self.period)
 		response = requests.get(get_request)
 		return response.content
+
+	def example_params(self):
+		return "example"
