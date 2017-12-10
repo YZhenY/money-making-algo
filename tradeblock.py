@@ -32,4 +32,4 @@ class TradeblockScraper(Scraper):
 		return response.content
 
 	def example_params(self):
-		return "example"
+		return "tbd"

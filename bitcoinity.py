@@ -29,7 +29,7 @@ class BitcoinityScraper(Scraper):
 		return {"data_type":self.data_type,"currency": self.currency,"exchange":self.exchange,
 		"compare":self.compare,"bidask_percent":self.bidask_percent,"bidask_unit":self.bidask_unit,"function":self.function,"timespan":self.timespan,"groups_count":self.groups_count,"resolution":self.resolution,"chart_type":self.chart_type,"smoothing":self.smoothing,"scale_type":self.scale_type}
 
-	def get_chart_data(self):
+	def get_data(self):
 		#returns chart data fetched through a post request
 		response = requests.post(self.url, data=self.get_params())
 		chartData = response.content
@@ -38,3 +38,6 @@ class BitcoinityScraper(Scraper):
 		json_acceptable_string = str_format.replace("'","\"")
 		dict_format = json.loads(json_acceptable_string)
 		return dict_format
+
+	def example_params(self):
+		return "tbd"
