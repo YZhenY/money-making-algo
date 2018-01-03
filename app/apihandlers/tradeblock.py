@@ -1,7 +1,8 @@
 #tradeblock chart scraper
 import requests
 import datetime
-from classstructure import *
+from app.apihandlers.classstructure import *
+
 class TradeblockScraper(Scraper):
 	"""Tradeblock Scraper scrapes information from tradeblock through their get responses. This currently only works for their chart data"""
 	# Example get request
