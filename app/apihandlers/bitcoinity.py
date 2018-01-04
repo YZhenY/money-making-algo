@@ -1,7 +1,9 @@
 ## method for scraping bitcoinity
 import requests
 import json
-from classstructure import *
+import datetime
+from app.apihandlers.classstructure import *
+
 class BitcoinityScraper(Scraper):
 	"""	Class for scraping Bitcoinity. Use its methods to draw data || Rihgt now just for public methods"""
 	url = "https://data.bitcoinity.org/chart_data"
@@ -41,3 +43,27 @@ class BitcoinityScraper(Scraper):
 
 	def example_params(self):
 		return "tbd"
+
+
+	#parser for the bidask data
+	def parser_bidask(self, input_bidask):
+		ask = input_bidask['data'][0]['values']
+		bid = input_bidask['data'][1]['values']
+
+		output_bid = []
+		output_ask = []
+
+
+		#turns array inputs into dictionaries
+		for index, value in enumerate(ask):
+		    
+		    output_ask.append({str(value[0]):value[1]})
+
+		for index, value in enumerate(bid):
+		    
+		    output_bid.append({str(value[0]):value[1]})
+
+		return [output_ask,output_bid]
+
+
+

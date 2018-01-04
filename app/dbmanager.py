@@ -12,10 +12,9 @@ def static_update_collection(collection_name, data, mongo_url):
 
 	coll = db[collection_name]
 
-	try:
-		coll.insert_many(data)
-	except:
-		print("Was not able to 'insert_many' in " + collection_name)
+
+	coll.insert_many(data)
+
 
 	client.close()
 

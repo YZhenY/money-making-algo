@@ -22,3 +22,10 @@ class Scraper(ABC):
 	@abstractmethod
 	def get_data(self):
 		"""get_data: returns the data from the request. Ideally also describes the data received"""
+
+class exchangeAPI(ABC):
+	"""ABC for scrapers."""
+
+	def __init__(self):
+		super().__init__()
+		
