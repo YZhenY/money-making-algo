@@ -33,6 +33,7 @@ class Cancel(object):
 class Match(object):
 
     def __init__(self, order_ids, match_price, match_qty):
+        # order_ids is a list of two orders. Index 0 is the bid, 1 is the ask
         self.order_ids = order_ids
         self.match_price = match_price
         self.match_qty = match_qty
@@ -73,8 +74,20 @@ class BaseEngine(object):
         elif cancel.side == 1:
             if cancel.order_id in self.order_book.asks:
                 self.order_book.asks.pop(cancel.order_id)
+    
+    def match_order(self, match):
 
-        
+        bid = self.order_book.bids.pop(match.order_ids[0])
+        ask = self.order_book.asks.pop(match.order_ids[1])
+
+        if bid.qty == ask.qty:
+            return 200
+        elif bid.qty > ask.qty:
+            bid.qty = bid.qty - ask.qty
+            self.add_order(bid)
+        else:
+            ask.qty = ask.qty - bid.qty
+            self.add_order(ask)
 
 
     
